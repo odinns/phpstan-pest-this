@@ -1,0 +1,57 @@
+{
+    "name": "odinns/phpstan-pest-this",
+    "description": "PHPStan extensions to infer Pest closure $this type from test file mappings.",
+    "type": "phpstan-extension",
+    "license": "MIT",
+    "homepage": "https://github.com/odinns/phpstan-pest-this",
+    "support": {
+        "issues": "https://github.com/odinns/phpstan-pest-this/issues",
+        "source": "https://github.com/odinns/phpstan-pest-this"
+    },
+    "authors": [
+        {
+            "name": "Odinn Adalsteinsson",
+            "homepage": "https://github.com/odinns"
+        }
+    ],
+    "keywords": [
+        "phpstan",
+        "pest",
+        "static-analysis",
+        "testing"
+    ],
+    "require": {
+        "php": "^8.2",
+        "phpstan/phpstan": "^2.1.38"
+    },
+    "autoload": {
+        "psr-4": {
+            "Odinns\\PhpStanPestThis\\": "src/"
+        }
+    },
+    "bin": [
+        "tools/generate-pest-proxy.php"
+    ],
+    "extra": {
+        "phpstan": {
+            "includes": [
+                "extension.neon"
+            ]
+        }
+    },
+    "scripts": {
+        "test": "phpunit",
+        "check": [
+            "@composer validate --strict",
+            "@php -l tools/generate-pest-proxy.php",
+            "@php -l src/PestClosureThisTypeResolver.php",
+            "@php -l src/PestFunctionParameterClosureThisExtension.php",
+            "@php -l src/PestMethodParameterClosureThisExtension.php",
+            "vendor/bin/phpstan analyse src tools --level=max --no-progress",
+            "phpunit"
+        ]
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^12.5"
+    }
+}

@@ -1,0 +1,39 @@
+name: CI
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.3"
+          coverage: none
+
+      - name: Validate composer
+        run: composer validate --strict
+
+      - name: Lint PHP files
+        run: |
+          php -l tools/generate-pest-proxy.php
+          php -l src/PestClosureThisTypeResolver.php
+          php -l src/PestFunctionParameterClosureThisExtension.php
+          php -l src/PestMethodParameterClosureThisExtension.php
+
+      - name: Install dependencies
+        run: composer install --no-interaction --no-progress
+
+      - name: Run static analysis
+        run: vendor/bin/phpstan analyse src tools --level=max --no-progress
+
+      - name: Run tests
+        run: composer test
+

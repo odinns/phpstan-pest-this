@@ -1,0 +1,32 @@
+parameters:
+    pestClosureThisTypeMap:
+        -
+            pathContains: '/tests/Feature/'
+            class: Tests\Feature\TestCase
+        -
+            pathContains: '/tests/Unit/'
+            class: Tests\Unit\TestCase
+
+parametersSchema:
+    pestClosureThisTypeMap: listOf(
+        structure([
+            pathContains: string()
+            class: string()
+        ])
+    )
+
+services:
+    -
+        class: Odinns\PhpStanPestThis\PestClosureThisTypeResolver
+        arguments:
+            pathToClassMap: %pestClosureThisTypeMap%
+
+    -
+        class: Odinns\PhpStanPestThis\PestFunctionParameterClosureThisExtension
+        tags:
+            - phpstan.functionParameterClosureThisExtension
+
+    -
+        class: Odinns\PhpStanPestThis\PestMethodParameterClosureThisExtension
+        tags:
+            - phpstan.methodParameterClosureThisExtension
