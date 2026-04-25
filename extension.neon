@@ -1,12 +1,3 @@
-parameters:
-    pestClosureThisTypeMap:
-        -
-            pathContains: '/tests/Feature/'
-            class: Tests\Feature\TestCase
-        -
-            pathContains: '/tests/Unit/'
-            class: Tests\Unit\TestCase
-
 parametersSchema:
     pestClosureThisTypeMap: listOf(
         structure([

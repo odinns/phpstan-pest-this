@@ -22,7 +22,19 @@ includes:
     - vendor/odinns/phpstan-pest-this/extension.neon
 ```
 
-Configure how file paths map to Pest base test case classes:
+The extension does not provide default test case mappings. Configure how file paths map to your Pest base test case classes:
+
+```neon
+parameters:
+    pestClosureThisTypeMap:
+        -
+            pathContains: '/tests/'
+            class: Tests\TestCase
+```
+
+This is the common Laravel/Pest setup where feature and unit tests share `Tests\TestCase`.
+
+If your project uses separate base test cases, map the more specific paths explicitly:
 
 ```neon
 parameters:

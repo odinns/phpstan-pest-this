@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.0] - 2026-04-25
+
+### Changed
+- Removed default Pest test case mappings from `extension.neon`.
+- Projects must now configure `pestClosureThisTypeMap` explicitly.
+
 ### Added
 - Initial PHPStan extensions for Pest closure `$this` inference via path mappings.
 - Proxy generator tool for PHPStan-only test case wrappers.
@@ -16,4 +22,3 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 - First public release of `odinns/phpstan-pest-this`.
-
