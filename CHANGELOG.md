@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.1] - 2026-04-25
+
+### Fixed
+- Correct the Composer PHP requirement to `^8.3`.
+- Run CI on PHP 8.3 and 8.4 only.
+
+### Added
+- Add missing public-package hygiene files: `.gitattributes`, `SECURITY.md`, `CODE_OF_CONDUCT.md`, and `GEMINI.md`.
+
 ## [1.0.0] - 2026-04-25
 
 ### Changed

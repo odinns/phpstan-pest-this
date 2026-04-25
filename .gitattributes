@@ -1,0 +1,8 @@
+/.github export-ignore
+/AGENTS.md export-ignore
+/CLAUDE.md export-ignore
+/GEMINI.md export-ignore
+/composer.lock export-ignore
+/phpstan.neon export-ignore
+/phpunit.xml.dist export-ignore
+/tests export-ignore

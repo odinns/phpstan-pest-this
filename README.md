@@ -97,11 +97,40 @@ This proxy only affects static analysis. It does not change Pest runtime behavio
 - It does not infer dynamic properties automatically; declare those on your test case/traits.
 - Mapping is path-substring based, so very broad patterns can match unintentionally.
 
+## Development
+
+```bash
+composer install
+composer check
+```
+
 ## Troubleshooting
 
 - No effect in analysis: confirm `extension.neon` is included in your PHPStan config.
 - Wrong inferred class: ensure mapping order is specific to broad (first match wins).
 - Generator not found: use `vendor/bin/generate-pest-proxy.php` after install or `php tools/generate-pest-proxy.php` in this repository.
+
+## Versioning
+
+This package follows SemVer from `1.0.0` onward. Composer versions come from Git tags, not a `version` field in `composer.json`.
+
+## Contributing
+
+Keep changes narrow. This package teaches PHPStan about Pest closure `$this`; it should not grow runtime Pest behavior or framework glue.
+
+Run `composer check` before opening a PR.
+
+## Security
+
+Report security issues privately through GitHub Security Advisories:
+
+https://github.com/odinns/phpstan-pest-this/security/advisories/new
+
+Please do not open public issues for security reports.
+
+## Changelog
+
+See `CHANGELOG.md` for release notes.
 
 ## License
 

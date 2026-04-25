@@ -9,31 +9,22 @@ jobs:
   validate:
     runs-on: ubuntu-latest
 
+    strategy:
+      fail-fast: false
+      matrix:
+        php-version: ["8.3", "8.4"]
+
     steps:
       - uses: actions/checkout@v4
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: "8.3"
+          php-version: ${{ matrix.php-version }}
           coverage: none
-
-      - name: Validate composer
-        run: composer validate --strict
-
-      - name: Lint PHP files
-        run: |
-          php -l tools/generate-pest-proxy.php
-          php -l src/PestClosureThisTypeResolver.php
-          php -l src/PestFunctionParameterClosureThisExtension.php
-          php -l src/PestMethodParameterClosureThisExtension.php
 
       - name: Install dependencies
         run: composer install --no-interaction --no-progress
 
-      - name: Run static analysis
-        run: vendor/bin/phpstan analyse src tools --level=max --no-progress
-
-      - name: Run tests
-        run: composer test
-
+      - name: Run quality gate
+        run: composer check
